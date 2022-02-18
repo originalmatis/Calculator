@@ -44,15 +44,15 @@ function addOperator (){
 }
 
 
-function calculator(firstNumber,operator,secondNumber){
-    if(operator === "+"){
-        result =  Number(firstNumber) + Number(secondNumber)
-    } else if (operator === "-"){
-        result =  Number(firstNumber) - Number(secondNumber)
-    } else if (operator === "/"){
-        result = Number(firstNumber) / Number(secondNumber)
-    } else if (operator === "*"){
-        result =  Number(firstNumber) * Number(secondNumber)
+function calculator(firstNumberParameter,operatorParameter,secondNumberParameter){
+    if(operatorParameter === "+"){
+        result =  Number(firstNumberParameter) + Number(secondNumberParameter)
+    } else if (operatorParameter === "-"){
+        result =  Number(firstNumberParameter) - Number(secondNumberParameter)
+    } else if (operatorParameter === "/"){
+        result = Number(firstNumberParameter) / Number(secondNumberParameter)
+    } else if (operatorParameter === "*"){
+        result =  Number(firstNumberParameter) * Number(secondNumberParameter)
     } else {
         result = "error"
     }
