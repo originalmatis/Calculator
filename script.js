@@ -1,68 +1,74 @@
-const btns = document.getElementsByClassName("btns");
-const operators = document.getElementsByClassName("operators");
+const screenContent = document.querySelector("#screenContent")
+const one = document.querySelector("#one")
+const two = document.querySelector("#two")
+const three = document.querySelector("#three")
+const four = document.querySelector("#four")
+const five = document.querySelector("#five")
+const six = document.querySelector("#six")
+const seven = document.querySelector("#seven")
+const eight = document.querySelector("#eight")
+const nine = document.querySelector("#nine")
+const zero = document.querySelector("#zero")
+const devide = document.querySelector("#devide")
+const multiply = document.querySelector("#multiply")
+const plus = document.querySelector("#plus")
+const minus = document.querySelector("#minus")
+const squareRoot = document.querySelector("#squareRoot")
+const square = document.querySelector("#square")
 const equals = document.querySelector("#equals")
-const screen = document.querySelector("input");
-let x = 0
+const dot = document.querySelector("#dot")
+
+let operation
 let firstNumber = ""
-let operator
 let secondNumber = ""
-let firstNumberFinnal
-let result
+
+one.addEventListener("click", numberClick);
+two.addEventListener("click", numberClick);
+three.addEventListener("click", numberClick);
+four.addEventListener("click", numberClick);
+five.addEventListener("click", numberClick);
+six.addEventListener("click", numberClick);
+seven.addEventListener("click", numberClick);
+eight.addEventListener("click", numberClick);
+nine.addEventListener("click", numberClick);
+zero.addEventListener("click", numberClick);
+dot.addEventListener("click", numberClick);
+devide.addEventListener("click", operationClick);
+multiply.addEventListener("click", operationClick);
+plus.addEventListener("click", operationClick);
+minus.addEventListener("click", operationClick);
+squareRoot.addEventListener("click", operationClick);
+square.addEventListener("click", operationClick);
+equals.addEventListener("click", calculateClick);
 
 
+function numberClick(){
+    screenContent.textContent = screenContent.textContent + this.textContent
+    
+}
 
-function addFirstNumber(){
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function () {
-        if(x === 0){ 
-            firstNumberFinnal = firstNumber
-            firstNumber = firstNumber + this.value
-            screen.value = firstNumber
-        }
-        })
+function operationClick(){
+    operation = this.textContent
+    firstNumber = Number(screenContent.textContent)
+    screenContent.textContent = ""
+    console.log(firstNumber)
+    console.log(operation)
+}
+
+function calculateClick(){
+    secondNumber = Number(screenContent.textContent)
+    if(operation == "+"){
+        screenContent.textContent = firstNumber + secondNumber
+    } else if(operation == "-"){
+        screenContent.textContent = firstNumber - secondNumber
+    } else if(operation == "X"){
+        screenContent.textContent = firstNumber * secondNumber
+    } else if(operation == "/"){
+        screenContent.textContent = firstNumber / secondNumber
+    } else if(operation == "^"){
+        screenContent.textContent = Math.sqrt(firstNumber, secondNumber)
+    } else if(operation == "x²"){
+        screenContent.textContent = Math.pow(firstNumber, secondNumber)
     }
-}
+} 
 
-function addSecondumber(){
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function () {
-        x++
-        secondNumber = secondNumber + this.value
-        screen.value = secondNumber
-        })
-    }
-}
-
-function addOperator (){
-    for (let i = 0; i < operators.length; i++) {
-        operators[i].addEventListener("click", function () {
-            operator = this.value
-            screen.value = ""
-            addSecondumber()
-        });
-    }
-}
-
-
-function calculator(firstNumberParameter,operatorParameter,secondNumberParameter){
-    if(operatorParameter === "+"){
-        result =  Number(firstNumberParameter) + Number(secondNumberParameter)
-    } else if (operatorParameter === "-"){
-        result =  Number(firstNumberParameter) - Number(secondNumberParameter)
-    } else if (operatorParameter === "/"){
-        result = Number(firstNumberParameter) / Number(secondNumberParameter)
-    } else if (operatorParameter === "*"){
-        result =  Number(firstNumberParameter) * Number(secondNumberParameter)
-    } else {
-        result = "error"
-    }
-    screen.value = result
-}
-
-function calc (){
-    calculator(firstNumberFinnal,operator,secondNumber)
-}
-
-equals.addEventListener("click",calc)
-addFirstNumber()
-addOperator()
